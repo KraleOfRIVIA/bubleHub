@@ -16,7 +16,7 @@ const Cart = observer(() => {
     };
 
     const sendData = () =>{
-        WebApp.sendData(store.cart)
+        WebApp.sendData(JSON.stringify(store.cart))
     }
 
     return (
