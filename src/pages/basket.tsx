@@ -4,7 +4,6 @@ import { Context } from '../main.tsx';
 import { useNavigate } from 'react-router-dom';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { BackButton, MainButton} from '@twa-dev/sdk/react';
-import WebApp from '@twa-dev/sdk';
 
 const Cart = observer(() => {
     const { store } = useContext(Context);
@@ -14,10 +13,6 @@ const Cart = observer(() => {
     const goBack = () => {
         navigate('/');
     };
-
-    const sendData = () =>{
-        WebApp.sendData(JSON.stringify(store.cart))
-    }
 
     return (
         <>
@@ -62,7 +57,7 @@ const Cart = observer(() => {
                     <BackButton onClick={goBack} />
                     <MainButton text={`Оформить заказ на ${store.totalPrice} ₽`}
                                 color={'#E65282'}
-                                onClick={sendData}
+                                onClick={()=> navigate(`${store.getInvoceLink}`)}
                     />
             </div>
         </>

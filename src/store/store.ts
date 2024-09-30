@@ -112,4 +112,34 @@ export class ProductStore {
             this.setProducts(dataProducts);
             this.setCategoryItem(dataCategory);
     }
+    async getInvoceLink() {
+        const orderData = {
+            products: this.cart.map(item => ({
+                name: item.product.name,
+                qual: item.quantity,
+                amount: item.quantity * item.product.price
+            }))
+        };
+    
+        try {
+            const response = await fetch('https://server.botoforge.ru/api/get_link', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to get invoice link');
+            }
+    
+            const data = await response.json();
+            console.log(data);
+            return data.link;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
 }
