@@ -18,7 +18,7 @@ const Cart = observer(() => {
 
     const OpenIvoce = async () => {
         try {
-            const invoiceLink = await store.getInvoceLink();
+            const invoiceLink = 'https://t.me/$UEbXejt42UvEDAAAyxT9x8Wc4TE'
             if (invoiceLink) {
                 WebApp.openInvoice(invoiceLink); // Передаём ссылку на инвойс
             } else {
