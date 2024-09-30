@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { BackButton, MainButton} from '@twa-dev/sdk/react';
 import BottomButton from '../components/botton-button.tsx';
+import WebApp from '@twa-dev/sdk';
 
 const Cart = observer(() => {
     const { store } = useContext(Context);
@@ -15,9 +16,19 @@ const Cart = observer(() => {
         navigate('/');
     };
 
-    const OpenIvoce = () => {
-        navigate((`${store.getInvoceLink()}`))
-    }
+    const OpenIvoce = async () => {
+        try {
+            const invoiceLink = await store.getInvoceLink();
+            if (invoiceLink) {
+                WebApp.openInvoice(invoiceLink); // Передаём ссылку на инвойс
+            } else {
+                console.error("Invoice link is undefined");
+            }
+        } catch (error) {
+            console.error("Error fetching invoice link:", error);
+        }
+    };
+    
 
     return (
         <>

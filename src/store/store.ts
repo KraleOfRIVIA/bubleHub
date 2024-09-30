@@ -112,7 +112,7 @@ export class ProductStore {
             this.setProducts(dataProducts);
             this.setCategoryItem(dataCategory);
     }
-    async getInvoceLink() {
+    async getInvoceLink(): Promise<string | undefined> {
         const orderData = {
             products: this.cart.map(item => ({
                 name: item.product.name,
@@ -134,12 +134,13 @@ export class ProductStore {
                 throw new Error('Failed to get invoice link');
             }
     
-            const data = await response;
-            console.log(data);
-            return data;
+            const data = await response.json();
+            return data.link; // Предполагается, что в JSON-ответе есть поле "link", содержащее строку ссылки
         } catch (error) {
             console.error(error);
+            return undefined;
         }
     }
+    
     
 }
