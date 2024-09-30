@@ -134,9 +134,9 @@ export class ProductStore {
                 throw new Error('Failed to get invoice link');
             }
     
-            const data = await response.json();
+            const data = await response;
             console.log(data);
-            return data.link;
+            return data;
         } catch (error) {
             console.error(error);
         }
