@@ -4,7 +4,7 @@ import { Context } from '../main.tsx';
 import { useNavigate } from 'react-router-dom';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { BackButton, MainButton} from '@twa-dev/sdk/react';
-import WebApp from '@twa-dev/sdk';
+import BottomButton from '../components/botton-button.tsx';
 
 const Cart = observer(() => {
     const { store } = useContext(Context);
@@ -16,7 +16,7 @@ const Cart = observer(() => {
     };
 
     const OpenIvoce = () => {
-        WebApp.openTelegramLink((`${store.getInvoceLink()}`))
+        navigate((`${store.getInvoceLink()}`))
     }
 
     return (
@@ -64,6 +64,7 @@ const Cart = observer(() => {
                                 color={'#E65282'}
                                 onClick={OpenIvoce}
                     />
+                    <BottomButton onClick={OpenIvoce} label='fgf'/>
             </div>
         </>
     );
