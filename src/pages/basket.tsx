@@ -16,7 +16,7 @@ const Cart = observer(() => {
     };
 
     const OpenIvoce = () => {
-        WebApp.openInvoice((`${store.getInvoceLink}`))
+        WebApp.openInvoice((`${store.getInvoceLink()}`))
     }
 
     return (
