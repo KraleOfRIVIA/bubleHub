@@ -4,7 +4,6 @@ import { Context } from '../main.tsx';
 import { useNavigate } from 'react-router-dom';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { BackButton, MainButton} from '@twa-dev/sdk/react';
-import BottomButton from '../components/botton-button.tsx';
 import WebApp from '@twa-dev/sdk';
 
 const Cart = observer(() => {
@@ -20,7 +19,7 @@ const Cart = observer(() => {
         try {
             const invoiceLink = await store.getInvoceLink();
             if (invoiceLink) {
-                WebApp.openInvoice(invoiceLink); // Передаём ссылку на инвойс
+                WebApp.openInvoice(invoiceLink);
             } else {
                 console.error("Invoice link is undefined");
             }
@@ -75,7 +74,6 @@ const Cart = observer(() => {
                                 color={'#E65282'}
                                 onClick={OpenIvoce}
                     />
-                    <BottomButton onClick={OpenIvoce} label='fgf'/>
             </div>
         </>
     );
