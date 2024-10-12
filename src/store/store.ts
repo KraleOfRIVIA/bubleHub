@@ -103,15 +103,24 @@ export class ProductStore {
     }
 
     async fetchProductsAndCategories() {
+        try {
+            this.setLoading(true); // Set loading to true before fetching data
+    
             const responseProducts = await fetch('http://localhost:3000/api/products/all');
             const dataProducts = await responseProducts.json();
-            console.log(dataProducts)
-            const responseCategory = await fetch('http://localhost:3000/api/products/all');
+    
+            const responseCategory = await fetch('http://localhost:3000/api/products/categories');
             const dataCategory = await responseCategory.json();
-
+    
             this.setProducts(dataProducts);
             this.setCategoryItem(dataCategory);
+        } catch (error) {
+            console.error('Failed to fetch products and categories:', error);
+        } finally {
+            this.setLoading(false); // Set loading to false after the process completes
+        }
     }
+    
     async getInvoceLink(): Promise<string | undefined> {
         const orderData = {
             products: this.cart.map(item => ({
@@ -135,7 +144,7 @@ export class ProductStore {
             }
     
             const data = await response.json();
-            return data.link; // Предполагается, что в JSON-ответе есть поле "link", содержащее строку ссылки
+            return data.link;
         } catch (error) {
             console.error(error);
             return undefined;

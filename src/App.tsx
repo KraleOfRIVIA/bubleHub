@@ -7,6 +7,8 @@ import ProductList from './pages/products-page';
 import Cart from './pages/basket';
 import SingleProduct from "./pages/singel-product.tsx";
 import { Context } from './main.tsx';
+import { ClipLoader } from 'react-spinners';
+import { observer } from 'mobx-react-lite';
 
 interface PageWrapperProps {
     children: React.ReactNode;
@@ -29,7 +31,7 @@ const PageWrapper: FC<PageWrapperProps> = ({ children }) => {
     );
 };
 
-const App: React.FC = () => {
+const App: React.FC = observer(() => {
     const location = useLocation();
     const { store } = useContext(Context);
     
@@ -38,6 +40,14 @@ const App: React.FC = () => {
             store.fetchProductsAndCategories();
         }
     }, []);
+
+    if(store.loading) {
+        return (
+            <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center">
+                <ClipLoader size={150} />
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -50,7 +60,6 @@ const App: React.FC = () => {
                                 <ProductList />
                             </PageWrapper>
                         }
-
                     />
                     <Route
                         path="/:category"
@@ -80,6 +89,6 @@ const App: React.FC = () => {
             </AnimatePresence>
         </div>
     );
-};
+});
 
 export default App;
