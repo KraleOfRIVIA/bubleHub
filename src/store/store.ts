@@ -106,10 +106,10 @@ export class ProductStore {
         try {
             this.setLoading(true); // Set loading to true before fetching data
     
-            const responseProducts = await fetch('http://localhost:3000/api/products/all');
+            const responseProducts = await fetch('http://server.botoforge.ru/api/products/all');
             const dataProducts = await responseProducts.json();
     
-            const responseCategory = await fetch('http://localhost:3000/api/products/categories');
+            const responseCategory = await fetch('http://server.botoforge.ru/api/products/categories');
             const dataCategory = await responseCategory.json();
     
             this.setProducts(dataProducts);
