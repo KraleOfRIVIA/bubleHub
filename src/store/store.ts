@@ -103,10 +103,10 @@ export class ProductStore {
     }
 
     async fetchProductsAndCategories() {
-            const responseProducts = await fetch('https://server.botoforge.ru/api/products/all');
+            const responseProducts = await fetch('http://localhost:3000/api/products/all');
             const dataProducts = await responseProducts.json();
             console.log(dataProducts)
-            const responseCategory = await fetch('https://server.botoforge.ru/api/products/categories');
+            const responseCategory = await fetch('http://localhost:3000/api/products/all');
             const dataCategory = await responseCategory.json();
 
             this.setProducts(dataProducts);

@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = observer(({ id, price, name, wei
                 </div>
                 <div className="my-2">
                     <h1>{name}</h1>
-                    <h2 className="text-gray-500 text-xs">{weight} г</h2>
+                    <h2 className="text-gray-500 text-xs">{weight} мл</h2>
                 </div>
                 <div className="flex items-center">
                     {isInCart && (

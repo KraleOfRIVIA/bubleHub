@@ -38,7 +38,7 @@ const SingleProduct = observer(() => {
             <div className="bg-[#99D4E6] dark:bg-[#0D0D0D] rounded-3xl h-screen">
                 <div className="ml-4 mr-4">
                     <h1 className="pt-4 dark:text-white text-lg font-bold">{product.name}</h1>
-                    <h2 className="text-gray-500 font-bold text-[20px]">{product.weight} г</h2>
+                    <h2 className="text-gray-500 font-bold text-[20px]">{product.weight} мл</h2>
                     <hr className="my-2 border-gray-400 mr-1"/>
                     <div className="font-mulish text-sm dark:text-white my-4">
                         {product.description}
