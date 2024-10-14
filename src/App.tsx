@@ -1,7 +1,7 @@
 import React, {FC, useContext, useEffect} from 'react';
 
 import './App.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import ProductList from './pages/products-page';
 import Cart from './pages/basket';
@@ -9,6 +9,7 @@ import SingleProduct from "./pages/singel-product.tsx";
 import { Context } from './main.tsx';
 import { ClipLoader } from 'react-spinners';
 import { observer } from 'mobx-react-lite';
+import { useSwipeable } from 'react-swipeable';
 
 interface PageWrapperProps {
     children: React.ReactNode;
@@ -34,12 +35,18 @@ const PageWrapper: FC<PageWrapperProps> = ({ children }) => {
 const App: React.FC = observer(() => {
     const location = useLocation();
     const { store } = useContext(Context);
-    
+    const navigate = useNavigate();
     useEffect(() => {
         if (store.category.length === 0) {
             store.fetchProductsAndCategories();
         }
     }, []);
+    const swipe = useSwipeable({
+        onSwipedLeft: () => {navigate(-1) 
+        },
+        onSwipedRight: () => {navigate(1)
+        }
+    })
 
     if(store.loading) {
         return (
@@ -50,7 +57,7 @@ const App: React.FC = observer(() => {
     }
 
     return (
-        <div>
+        <div {...swipe}>
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route

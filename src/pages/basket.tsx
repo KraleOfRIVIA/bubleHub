@@ -3,8 +3,9 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '../main.tsx';
 import { useNavigate } from 'react-router-dom';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
-import { BackButton, MainButton} from '@twa-dev/sdk/react';
+import { BackButton} from '@twa-dev/sdk/react';
 import WebApp from '@twa-dev/sdk';
+import BottomButton from '../components/botton-button.tsx';
 
 const Cart = observer(() => {
     const { store } = useContext(Context);
@@ -70,8 +71,7 @@ const Cart = observer(() => {
                     Итого:<strong>{total} ₽</strong>
                 </div>
                     <BackButton onClick={goBack} />
-                    <MainButton text={`Оформить заказ на ${store.totalPrice} ₽`}
-                                color={'#E65282'}
+                    <BottomButton label={`Оформить заказ на ${store.totalPrice} ₽`}
                                 onClick={OpenIvoce}
                     />
             </div>
