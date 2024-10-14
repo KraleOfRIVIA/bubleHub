@@ -20,7 +20,7 @@ const Cart = observer(() => {
         try {
             const invoiceLink = await store.getInvoceLink();
             if (invoiceLink) {
-                WebApp.openInvoice(invoiceLink);
+                WebApp.openInvoice(invoiceLink, () => WebApp.close());
             } else {
                 console.error("Invoice link is undefined");
             }
