@@ -9,7 +9,7 @@ const CategoryBar = () => {
     const currentPath = decodeURIComponent(location.pathname); // Декодируем путь
 
     return (
-        <div className="my-3 w-full overflow-x-auto">
+        <div className="my-1 w-full overflow-x-auto">
             <div className="flex space-x-4 px-4 py-2">
                 {/* Ссылка на главную страницу */}
                 <Link
